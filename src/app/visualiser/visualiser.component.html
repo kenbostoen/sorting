@@ -1,0 +1,4 @@
+<div class="wrapper">
+    <div *ngFor="let record of sortingArray" class="record"
+    [style.height.%]="(record / MAXHEIGHT) * 100"></div>
+</div>

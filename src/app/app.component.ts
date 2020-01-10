@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { VisualiserComponent } from './visualiser/visualiser.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sortingAlgorithms';
+  @ViewChild(VisualiserComponent, {static: false}) vis:VisualiserComponent;
+
+  arraySize = 20;
+  setArraySize(event) {
+    this.vis.replaceSortingArray(event);
+  }
 }
