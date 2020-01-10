@@ -14,4 +14,7 @@ export class AppComponent {
   setArraySize(event) {
     this.vis.replaceSortingArray(event);
   }
+  sort() {
+    this.vis.sort();
+  }
 }

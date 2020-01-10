@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { SortService } from '../sort.service';
 
 @Component({
   selector: 'app-visualiser',
@@ -7,16 +8,32 @@ import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 })
 export class VisualiserComponent {
   sortingArray = [];
-  MAXHEIGHT = Math.max(...this.sortingArray)
-  constructor(){
+  MAXHEIGHT = Math.max(...this.sortingArray);
+
+  constructor(private sortService: SortService){
     this.replaceSortingArray(50);
   }
   
  replaceSortingArray(size: number){
    this.sortingArray = [];
    for (let i = 0; i < size; i++) {
-      this.sortingArray.push(Math.random() * 200)
+     console.log(this.sortingArray);
+     
+      this.sortingArray.push(Math.round(Math.random() * 200))
    }
+   console.log(this.sortingArray);
+   
    this.MAXHEIGHT = Math.max(...this.sortingArray)
  }
+
+sort() {
+  console.log('sorting');
+  
+  this.sortService.sort(this.sortingArray).subscribe((array: number[]) => {
+    if(array != this.sortingArray) {
+      console.log(array);
+      this.sortingArray = array;
+    }
+  });
+}
 }

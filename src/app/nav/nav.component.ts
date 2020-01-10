@@ -7,6 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class NavComponent implements OnInit {
   @Output() sliderValueEmitter = new EventEmitter();
+  @Output() sortEmitter = new EventEmitter();
 
   constructor() { }
 
@@ -15,6 +16,11 @@ export class NavComponent implements OnInit {
   slider.oninput = () => {
     this.sliderValueEmitter.emit(slider['value']); 
     }
+  }
+  sort(){
+    console.log('pre emmit');
+    
+    this.sortEmitter.emit();
   }
 
 }
