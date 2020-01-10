@@ -1,4 +1,4 @@
 <div class="wrapper">
     <div *ngFor="let record of sortingArray; let i = index" class="record"
-    [style.height.%]="(record / MAXHEIGHT) * 100" [ngClass]="{'highlight': highlighted.indexOf(i) >= 0}"></div>
+    [style.height.%]="(record / MAXHEIGHT) * 100" [ngClass]="{'highlight': highlighted.indexOf(i) >= 0, 'swapping': swapping && highlighted.indexOf(i) >= 0}"></div>
 </div>
