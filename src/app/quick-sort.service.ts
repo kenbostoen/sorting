@@ -7,6 +7,7 @@ import { SortAnimation } from './model/SortAnimation';
 export class QuickSortService {
   animations: SortAnimation[] = [];
   sort(items:number[], left, right): SortAnimation[] {
+    this.animations = [];
     var index;
     if (items.length > 1) {
       index = this.partition(items, left, right); //index returned from partition
