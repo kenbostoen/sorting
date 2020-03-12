@@ -16,10 +16,10 @@ export class VisualiserComponent {
   constructor(private sortService: SortService) {
     this.replaceSortingArray(50);
   }
-  
- replaceSortingArray(size: number){
-      this.sortingArray = [];
-      for(let i = 0; i<size; i++) {
+
+  replaceSortingArray(size: number) {
+    this.sortingArray = [];
+    for (let i = 0; i < size; i++) {
 
       this.sortingArray.push(Math.round(Math.random() * 200))
     }
@@ -29,13 +29,17 @@ export class VisualiserComponent {
 
   sort() {
     const animations = this.sortService.sort(this.sortingArray.slice());
-    console.log(animations);
     let i = 0;
-    interval(30).subscribe(() => {
-      this.sortingArray = animations[i].array;
-      this.highlighted = [animations[i].barA, animations[i].barB]
-        this.swapping = animations[i].swapping
-      i++;
+    const int = interval(30).subscribe(() => {
+      if (i < animations.length) {
+        this.sortingArray = animations[i].array;
+        this.highlighted = [animations[i].barA, animations[i].barB];
+        this.swapping = animations[i].swapping;
+        i++;
+      } else {
+        int.unsubscribe();
+      }
+
     });
   }
 }
