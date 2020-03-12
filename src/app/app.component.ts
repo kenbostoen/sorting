@@ -9,6 +9,7 @@ import { VisualiserComponent } from './visualiser/visualiser.component';
 export class AppComponent {
   title = 'sortingAlgorithms';
   @ViewChild(VisualiserComponent, {static: false}) vis:VisualiserComponent;
+  visualising =false;
 
   arraySize = 20;
   setArraySize(event) {

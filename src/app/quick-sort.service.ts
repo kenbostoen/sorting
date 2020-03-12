@@ -6,7 +6,14 @@ import { SortAnimation } from './model/SortAnimation';
 })
 export class QuickSortService {
   animations: SortAnimation[] = [];
-  sort(items:number[], left, right): SortAnimation[] {
+
+  startSort(items:number[], left, right): SortAnimation[] {
+    this.animations = [];
+    this.sort(items, left, right);
+    return this.animations;
+  }
+
+  sort(items:number[], left, right) {
     var index;
     if (items.length > 1) {
       index = this.partition(items, left, right); //index returned from partition
@@ -16,8 +23,7 @@ export class QuickSortService {
       if (index < right) { //more elements on the right side of the pivot
         this.sort(items, index, right);
       }
-    }    
-    return this.animations;
+    }
   }
   partition(items: number[], left, right) {
     var pivot = items[Math.floor((right + left) / 2)], //middle element

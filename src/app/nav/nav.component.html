@@ -4,6 +4,6 @@
         <input type="range" class="form-control-range" min="5" max="100"id="arraySize">
     </li>    
     <li class="nav-item">
-      <a class="nav-link" href="#" (click)="sort()">Sort!</a>
+      <a class="nav-link" *ngIf="!visualising" href="#" (click)="sort()">Sort!</a>
     </li>
   </ul>

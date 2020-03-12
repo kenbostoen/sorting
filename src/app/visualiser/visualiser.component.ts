@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, EventEmitter, Output } from '@angular/core';
 import { SortService } from '../sort.service';
 import { interval } from 'rxjs';
 
@@ -12,6 +12,7 @@ export class VisualiserComponent {
   MAXHEIGHT = Math.max(...this.sortingArray);
   highlighted = [];
   swapping = false;
+  @Output() visualisingEmitter = new EventEmitter();
 
   constructor(private sortService: SortService) {
     this.replaceSortingArray(50);
@@ -30,6 +31,7 @@ export class VisualiserComponent {
   sort() {
     const animations = this.sortService.sort(this.sortingArray.slice());
     let i = 0;
+    this.visualisingEmitter.emit(true);
     const int = interval(30).subscribe(() => {
       if (i < animations.length) {
         this.sortingArray = animations[i].array;
@@ -37,6 +39,7 @@ export class VisualiserComponent {
         this.swapping = animations[i].swapping;
         i++;
       } else {
+        this.visualisingEmitter.emit(false);
         int.unsubscribe();
       }
 

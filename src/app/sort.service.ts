@@ -13,7 +13,7 @@ export class SortService {
     let copyArray = array;
     let low = 0;
     let high = array.length - 1;
-    return this.quicksort.sort(copyArray, low, high);
+    return this.quicksort.startSort(copyArray, low, high);
   }
 
   
